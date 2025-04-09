@@ -19,6 +19,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				poppins: ['Poppins', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -81,13 +84,23 @@ export default {
 				'skew-scroll': {
 					'0%': { transform: 'translateY(0) skewY(0deg)' },
 					'100%': { transform: 'translateY(calc(-100% + 250px))' }
-				}
+				},
+                'float': {
+                    '0%': { transform: 'translateY(0)' },
+                    '50%': { transform: 'translateY(-10px)' },
+                    '100%': { transform: 'translateY(0)' }
+                }
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'skew-scroll': 'skew-scroll 20s linear infinite'
-			}
+				'skew-scroll': 'skew-scroll 20s linear infinite',
+                'float': 'float 6s ease-in-out infinite'
+			},
+            backgroundImage: {
+                'dot-pattern': 'radial-gradient(circle, #e5e7eb 1px, transparent 1px)',
+                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            },
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

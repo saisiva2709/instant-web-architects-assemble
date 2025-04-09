@@ -12,7 +12,7 @@ import { motion } from "framer-motion";
 const Index = () => {
   return (
     <MainLayout>
-      <div className="min-h-screen">
+      <div className="min-h-screen font-poppins">
         {/* Hero Section */}
         <section id="hero" className="bg-gradient-to-b from-white to-slate-50">
           <Hero />
@@ -30,7 +30,7 @@ const Index = () => {
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-4">Enterprise-Grade Web Solutions</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                We deliver comprehensive web development and hosting solutions tailored to your unique business challenges
+                Transforming your digital vision into powerful, scalable web experiences that drive business growth
               </p>
             </motion.div>
             <motion.div
