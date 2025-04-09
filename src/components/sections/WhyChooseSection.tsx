@@ -1,7 +1,11 @@
 
-import { TiltedScroll } from "@/components/ui/tilted-scroll";
+import React, { useEffect, useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 export function WhyChooseSection() {
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const controls = useAnimation();
+  
   const whyChooseItems = [
     { id: "1", text: "10+ years of industry experience" },
     { id: "2", text: "Full-stack development expertise" },
@@ -13,8 +17,20 @@ export function WhyChooseSection() {
     { id: "8", text: "Security-first approach" },
   ];
 
+  useEffect(() => {
+    controls.start({
+      y: ["0%", "-50%"],
+      transition: {
+        repeat: Infinity,
+        repeatType: "mirror",
+        duration: 20,
+        ease: "linear"
+      }
+    });
+  }, [controls]);
+
   return (
-    <div className="py-20 bg-slate-50">
+    <div className="py-20 bg-gradient-to-b from-slate-50 to-slate-100">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">Why Choose Us</h2>
@@ -41,10 +57,40 @@ export function WhyChooseSection() {
             </p>
           </div>
           
-          <TiltedScroll 
-            items={whyChooseItems}
-            className="w-full md:w-1/2"
-          />
+          <div className="w-full md:w-1/2 h-[400px] overflow-hidden">
+            <div className="relative overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_80%,transparent)] h-full">
+              <motion.div
+                ref={cardsRef}
+                className="grid gap-5 grid-cols-1 pb-8"
+                animate={controls}
+              >
+                {[...whyChooseItems, ...whyChooseItems].map((item, index) => (
+                  <div
+                    key={`${item.id}-${index}`}
+                    className="group flex items-center gap-2 cursor-pointer rounded-md border border-border/40 bg-gradient-to-b from-background/80 to-muted/80 p-4 shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-xl dark:border-border"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      strokeWidth="1"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-6 w-6 mr-2 stroke-foreground/40 transition-colors group-hover:stroke-foreground"
+                    >
+                      <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" />
+                      <path d="m9 12 2 2 4-4" />
+                    </svg>
+                    <p className="text-foreground/80 transition-colors group-hover:text-foreground">
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
