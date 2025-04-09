@@ -8,7 +8,7 @@ interface MainLayoutProps {
 
 export function MainLayout({ children }: MainLayoutProps) {
   const navItems = [
-    { name: 'Home', url: '/', icon: Home },
+    { name: 'Home', url: '#hero', icon: Home },
     { name: 'Services', url: '#services', icon: Briefcase },
     { name: 'Process', url: '#process', icon: FileText },
     { name: 'About', url: '#why-choose-us', icon: User },
@@ -16,7 +16,8 @@ export function MainLayout({ children }: MainLayoutProps) {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50">
+    <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white">
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2064')] opacity-[0.03] bg-no-repeat bg-cover pointer-events-none"></div>
       <NavBar items={navItems} />
       <main>
         {children}

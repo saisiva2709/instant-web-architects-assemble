@@ -1,5 +1,6 @@
 
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
 
 interface TiltedScrollItem {
   id: string;
@@ -18,17 +19,19 @@ export function TiltedScroll({
   return (
     <div className={cn("flex items-center justify-center", className)}>
       <div className="relative overflow-hidden [mask-composite:intersect] [mask-image:linear-gradient(to_right,transparent,black_5rem),linear-gradient(to_left,transparent,black_5rem),linear-gradient(to_bottom,transparent,black_5rem),linear-gradient(to_top,transparent,black_5rem)]">
-        <div className="grid h-[250px] w-[300px] gap-5 animate-skew-scroll grid-cols-1">
-          {items.map((item) => (
-            <div
+        <div className="grid h-[350px] w-[330px] gap-5 animate-skew-scroll grid-cols-1">
+          {items.map((item, index) => (
+            <motion.div
               key={item.id}
-              className="group flex items-center gap-2 cursor-pointer rounded-md border border-border/40 bg-gradient-to-b from-background/80 to-muted/80 p-4 shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-xl dark:border-border"
+              whileHover={{ scale: 1.05, x: 5, y: -5 }}
+              transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="group flex items-center gap-2 cursor-pointer rounded-md border border-border/40 bg-gradient-to-b from-background/80 to-muted/80 p-5 shadow-md hover:shadow-xl dark:border-border"
             >
-              <CheckCircleIcon className="h-6 w-6 mr-2 stroke-foreground/40 transition-colors group-hover:stroke-foreground" />
-              <p className="text-foreground/80 transition-colors group-hover:text-foreground">
+              <CheckCircleIcon className="h-6 w-6 mr-2 text-blue-500 transition-colors group-hover:text-blue-600" />
+              <p className="text-foreground/90 transition-colors group-hover:text-foreground text-sm md:text-base">
                 {item.text}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -44,7 +47,7 @@ function CheckCircleIcon(props: React.SVGProps<SVGSVGElement>) {
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      strokeWidth="1"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
       {...props}
@@ -56,12 +59,12 @@ function CheckCircleIcon(props: React.SVGProps<SVGSVGElement>) {
 }
 
 const defaultItems: TiltedScrollItem[] = [
-  { id: "1", text: "Expert developers" },
-  { id: "2", text: "24/7 support" },
-  { id: "3", text: "Cloud infrastructure" },
-  { id: "4", text: "Performance optimization" },
-  { id: "5", text: "Security first approach" },
-  { id: "6", text: "Responsive design" },
-  { id: "7", text: "Continuous maintenance" },
-  { id: "8", text: "Transparent pricing" },
+  { id: "1", text: "Expert team of senior developers" },
+  { id: "2", text: "24/7 proactive technical support" },
+  { id: "3", text: "Enterprise-grade cloud infrastructure" },
+  { id: "4", text: "Advanced performance optimization" },
+  { id: "5", text: "Top-tier security architecture" },
+  { id: "6", text: "Responsive design across all devices" },
+  { id: "7", text: "Continuous updates and maintenance" },
+  { id: "8", text: "Transparent, predictable pricing" },
 ]

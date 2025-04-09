@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 function Hero() {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ["responsive", "scalable", "secure", "powerful", "modern"],
+    () => ["innovative", "scalable", "secure", "powerful", "professional"],
     []
   );
 
@@ -25,15 +25,31 @@ function Hero() {
   return (
     <div className="w-full">
       <div className="container mx-auto">
-        <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
-          <div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <Button variant="secondary" size="sm" className="gap-4">
-              Check our new features <MoveRight className="w-4 h-4" />
+              New features launched <MoveRight className="w-4 h-4" />
             </Button>
-          </div>
-          <div className="flex gap-4 flex-col">
-            <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
-              <span className="text-blue-500">Web solutions that are</span>
+          </motion.div>
+          <div className="flex gap-6 flex-col">
+            <h1 className="text-5xl md:text-7xl max-w-3xl tracking-tighter text-center font-regular">
+              <motion.span 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.5 }}
+                className="text-blue-500 font-medium"
+              >
+                Web solutions engineered for excellence
+              </motion.span>
               <span className="relative flex w-full justify-center overflow-hidden text-center md:pb-4 md:pt-1">
                 &nbsp;
                 {titles.map((title, index) => (
@@ -60,21 +76,31 @@ function Hero() {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
-              Full-stack web development services with premium hosting solutions. 
-              We build fast, reliable, and secure web applications that scale with your business. 
-              From concept to deployment, we handle everything.
-            </p>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.7 }}
+              className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center mx-auto"
+            >
+              Transform your digital presence with our full-stack web development and premium hosting solutions. 
+              We craft high-performance applications with cutting-edge technology, 
+              designed to scale seamlessly with your business growth.
+            </motion.p>
           </div>
-          <div className="flex flex-row gap-3">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.9 }}
+            className="flex flex-row gap-3"
+          >
             <Button size="lg" className="gap-4" variant="outline">
               Schedule consultation <PhoneCall className="w-4 h-4" />
             </Button>
             <Button size="lg" className="gap-4">
               Get started now <MoveRight className="w-4 h-4" />
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );

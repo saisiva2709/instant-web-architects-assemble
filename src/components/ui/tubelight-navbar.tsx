@@ -32,6 +32,16 @@ export function NavBar({ items, className }: NavBarProps) {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, item: NavItem) => {
+    e.preventDefault();
+    setActiveTab(item.name);
+    
+    const element = document.getElementById(item.url.substring(1));
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   return (
     <div
       className={cn(
@@ -48,7 +58,7 @@ export function NavBar({ items, className }: NavBarProps) {
             <Link
               key={item.name}
               to={item.url}
-              onClick={() => setActiveTab(item.name)}
+              onClick={(e) => handleNavClick(e, item)}
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",

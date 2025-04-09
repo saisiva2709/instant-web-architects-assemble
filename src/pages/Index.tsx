@@ -7,6 +7,7 @@ import { WhyChooseSection } from "@/components/sections/WhyChooseSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { FooterSection } from "@/components/sections/FooterSection";
+import { motion } from "framer-motion";
 
 const Index = () => {
   return (
@@ -20,13 +21,26 @@ const Index = () => {
         {/* Services Section */}
         <section id="services" className="py-16 bg-gradient-to-b from-slate-50 to-white">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold mb-4">Our Services</h2>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">Enterprise-Grade Web Solutions</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Comprehensive web development solutions tailored to your business needs
+                We deliver comprehensive web development and hosting solutions tailored to your unique business challenges
               </p>
-            </div>
-            <FeaturesSectionWithHoverEffects />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <FeaturesSectionWithHoverEffects />
+            </motion.div>
           </div>
         </section>
 
@@ -41,10 +55,14 @@ const Index = () => {
         </section>
 
         {/* FAQ Section */}
-        <FaqSection />
+        <section id="faq">
+          <FaqSection />
+        </section>
 
         {/* Contact Section */}
-        <ContactSection />
+        <section id="contact">
+          <ContactSection />
+        </section>
 
         {/* Footer */}
         <FooterSection />
