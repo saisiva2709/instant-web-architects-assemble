@@ -27,7 +27,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 20%", "end 60%"],
+    offset: ["start 10%", "end 50%"],
   });
 
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
@@ -48,11 +48,11 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         >
           Our 3R Process
         </motion.h2>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          viewport={{ once: true }}
+          viewport={{ once: true }} 
           className="text-neutral-700 text-base md:text-lg max-w-2xl mx-auto text-center mb-16"
         >
           We follow a proven methodology built around our 3Rs - Research, Realize, Results - to deliver exceptional digital experiences for your business.
@@ -82,7 +82,9 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-blue-600">
                 {item.title}
               </h3>
-              {item.content}
+              <div className="prose prose-lg max-w-none">
+                {item.content}
+              </div>
             </div>
           </motion.div>
         ))}
